@@ -1,0 +1,13 @@
+name: Pipeline de testes
+
+on:
+  push:
+    branches:
+      - main
+      - feature**
+jobs:
+  ci-dotnet:
+    uses: PePires58/ReusableWorkflows/.github/workflows/006_dotnet_build.yaml@main
+    with: 
+      dotnet-version: '8.0'
+      working-directory: '.'
