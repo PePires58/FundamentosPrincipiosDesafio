@@ -41,3 +41,5 @@ O que deve ser feito:
 
 Para saber se seu código está de acordo, realize a execução dos testes de unidade com o seguinte comando na pasta do projeto:
 dotnet test
+
+# Solução disponível na branch: feature-solucao
