@@ -3,7 +3,6 @@ name: Pipeline de testes
 on:
   push:
     branches:
-      - main
       - feature**
 jobs:
   ci-dotnet:
