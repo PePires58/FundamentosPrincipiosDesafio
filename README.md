@@ -16,14 +16,14 @@ Ex.:
 
 Repare que existem registros que contém mais campos do que outros, isso é dado devido a diferença da "ação" do template, veja mais a seguir.
 
-- Existem 3 tipos de perfis:
+<h3>Existem 3 tipos de perfis:</h3>
 <ol>
     <li>Básico (até 100 requisições por dia)</li>
     <li>Completo (até 1.000 requisições por dia)</li>
     <li>Premium (até 20.000 requisições por dia)</li>
 </ol>
 
-- Existem 2 tipos de ações:
+<h3>Existem 2 tipos de ações:</h3>
 <ul>
     <li>"01" - Cadastrar perfil de usuário (contém nome da pessoa e o tipo de perfil)</li>
     <li>"02" - Realizar requisições (contém apenas o código da ação e o da pessoa)</li>
