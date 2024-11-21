@@ -29,7 +29,7 @@ Repare que existem registros que contém mais campos do que outros, isso é dado
     <li>"02" - Realizar requisições (contém apenas o código da ação e o da pessoa)</li>
 
 </ul>
-Uma vez capturado o arquivo, será necessário retornar um tipo complexo de List<RespostaRequisicoes> no qual contém o nome da pessoa e quantas requisições a pessoa fez e quantas foram com sucesso e quantas com erro. Isso é, para cada usuário.
+Uma vez capturado o arquivo, será necessário retornar um tipo complexo de List de RespostaRequisicoes (obrigatório ter os campos e o tipo informado para respeitar as interfaces e o serviço pré-definido) no qual contém o nome da pessoa e quantas requisições a pessoa fez e quantas foram com sucesso e quantas com erro. Isso é, para cada usuário.
 
 Ex.:
 ```json
