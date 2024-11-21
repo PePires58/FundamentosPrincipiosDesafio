@@ -1,6 +1,5 @@
 ﻿using FundamentosPrincipiosDesafio.Interfaces;
 using FundamentosPrincipiosDesafio.Servicos;
-using System.Text;
 
 namespace FundamentosPrincipiosDesafio.Tests
 {
@@ -41,12 +40,12 @@ namespace FundamentosPrincipiosDesafio.Tests
         [TestMethod]
         public void DeveRetornarListaComUmItemEUmaRequisicao()
         {
-            StringBuilder arquivo = new();
-            arquivo.AppendLine("01;AASSBC-2341BCS-213;PEDRO PIRES;1");
-            arquivo.AppendLine("02;AASSBC-2341BCS-213;;");
-            
+            List<string> arquivo = [];
+            arquivo.Add("01;AASSBC-2341BCS-213;PEDRO PIRES;1");
+            arquivo.Add("02;AASSBC-2341BCS-213;;");
 
-            var resposta = ProcessarRequisicoes.LerRequisicoes([arquivo.ToString()]);
+
+            var resposta = ProcessarRequisicoes.LerRequisicoes([.. arquivo]);
             var primeiroItem = resposta.First();
 
             Assert.AreEqual(1, resposta.Count);
@@ -59,12 +58,13 @@ namespace FundamentosPrincipiosDesafio.Tests
         [TestMethod]
         public void DeveRetornarListaComMaisDeUmUsuario()
         {
-            StringBuilder arquivo = new();
-            arquivo.AppendLine("01;AASSBC-2341BCS-213;PEDRO PIRES;1");
-            arquivo.AppendLine("01;AASSBC-23412XS-000;JAELSON LIMA;2");
-            arquivo.AppendLine("02;AASSBC-2341BCS-213;;");
+            string[] arquivo = [
+                "01;AASSBC-2341BCS-213;PEDRO PIRES;1",
+                "01;AASSBC-23412XS-000;JAELSON LIMA;2",
+                "02;AASSBC-2341BCS-213;;"
+                ];
 
-            var resposta = ProcessarRequisicoes.LerRequisicoes([arquivo.ToString()]);
+            var resposta = ProcessarRequisicoes.LerRequisicoes(arquivo);
 
             Assert.AreEqual(2, resposta.Count);
         }
@@ -72,13 +72,15 @@ namespace FundamentosPrincipiosDesafio.Tests
         [TestMethod]
         public void DeveRetornarUmaRequisicaoPorErro()
         {
-            StringBuilder arquivo = new();
-            arquivo.AppendLine("01;AASSBC-2341BCS-213;PEDRO PIRES;1");
+            List<string> arquivo = [];
 
-            for (int i = 0; i < 102; i++)
-                arquivo.AppendLine("02;AASSBC-2341BCS-213;;");
+            arquivo.Add("01;AASSBC-2341BCS-213;PEDRO PIRES;1");
 
-            var resposta = ProcessarRequisicoes.LerRequisicoes([arquivo.ToString()]);
+            for (int i = 0; i < 101; i++)
+                arquivo.Add("02;AASSBC-2341BCS-213;;");
+
+            var resposta = ProcessarRequisicoes.LerRequisicoes([.. arquivo]);
+            var primeiroItem = resposta.First();
 
             Assert.AreEqual(1, resposta.Count);
             Assert.AreEqual(101, primeiroItem.Requisicoes);
@@ -89,13 +91,15 @@ namespace FundamentosPrincipiosDesafio.Tests
         [TestMethod]
         public void DeveRetornarUmaRequisicaoPorErroPerfilCompleto()
         {
-            StringBuilder arquivo = new();
-            arquivo.AppendLine("01;AASSBC-2341BCS-213;PEDRO PIRES;1");
+            List<string> arquivo = [];
 
-            for (int i = 0; i < 10002; i++)
-                arquivo.AppendLine("02;AASSBC-2341BCS-213;;");
+            arquivo.Add("01;AASSBC-2341BCS-213;PEDRO PIRES;2");
 
-            var resposta = ProcessarRequisicoes.LerRequisicoes([arquivo.ToString()]);
+            for (int i = 0; i < 1001; i++)
+                arquivo.Add("02;AASSBC-2341BCS-213;;");
+
+            var resposta = ProcessarRequisicoes.LerRequisicoes([.. arquivo]);
+            var primeiroItem = resposta.First();
 
             Assert.AreEqual(1, resposta.Count);
             Assert.AreEqual(1001, primeiroItem.Requisicoes);
@@ -106,13 +110,14 @@ namespace FundamentosPrincipiosDesafio.Tests
         [TestMethod]
         public void DeveRetornarUmaRequisicaoPorErroPerfilPremium()
         {
-            StringBuilder arquivo = new();
-            arquivo.AppendLine("01;AASSBC-2341BCS-213;PEDRO PIRES;1");
+            List<string> arquivo = [];
+            arquivo.Add("01;AASSBC-2341BCS-213;PEDRO PIRES;3");
 
-            for (int i = 0; i < 20002; i++)
-                arquivo.AppendLine("02;AASSBC-2341BCS-213;;");
+            for (int i = 0; i < 20001; i++)
+                arquivo.Add("02;AASSBC-2341BCS-213;;");
 
-            var resposta = ProcessarRequisicoes.LerRequisicoes([arquivo.ToString()]);
+            var resposta = ProcessarRequisicoes.LerRequisicoes([.. arquivo]);
+            var primeiroItem = resposta.First();
 
             Assert.AreEqual(1, resposta.Count);
             Assert.AreEqual(20001, primeiroItem.Requisicoes);

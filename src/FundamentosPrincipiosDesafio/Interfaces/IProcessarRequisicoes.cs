@@ -1,4 +1,6 @@
-﻿namespace FundamentosPrincipiosDesafio.Interfaces
+﻿using FundamentosPrincipiosDesafio.Entidades;
+
+namespace FundamentosPrincipiosDesafio.Interfaces
 {
     public interface IProcessarRequisicoes
     {
